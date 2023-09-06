@@ -1,0 +1,69 @@
+body {
+    background-color: grey;
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+  }
+  
+  h1 {
+    color: black;
+  }
+  
+  /* Style the button that is used to open and close the collapsible content */
+  .collapsible {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  
+  #ml-logo {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    object-position:
+  }
+  
+  #Purpose {
+    margin-bottom: 5vh;
+  }
+  
+  #Background {
+    margin-bottom: 5vh;
+  }
+  
+  #Implementation {
+    margin-bottom: 5vh;
+  }
+  
+form {
+  text-align: left;
+  margin-top: 5vh;
+}
+
+#app_title {
+  text-align:left;
+  margin-top:10vh;
+  font-size: 20px
+}
+
+#prediction_text{
+  margin-bottom:5vh;
+}
