@@ -59,11 +59,26 @@ form {
 }
 
 #app_title {
-  text-align:left;
+  text-align:center;
   margin-top:10vh;
   font-size: 20px
 }
 
 #prediction_text{
   margin-bottom:5vh;
+}
+
+.LR_Dropdown{
+  font-size:20px
+
+}
+
+.kNN_Dropdown{
+  font-size:20px
+
+}
+
+.RF_Dropdown{
+  font-size:20px
+
 }
