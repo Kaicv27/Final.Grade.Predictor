@@ -49,18 +49,21 @@ if __name__ == "__main__":
     global linear_regression_model
     pickle_in = open("final_linear_regression_model.pickle", "rb")
     linear_regression_model = pickle.load(pickle_in) #load the linear_regression model
-    app.run(host= "0.0.0.0")
-
-if __name__ == "__main__":
     global k_nearest_model
     pickle_in = open("final_knn_model.pickle", "rb")
     k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
-    app.run(host= "0.0.0.0")
-
-if __name__ == "__main__":
     global random_forest_model
     pickle_in = open("final_rf_model.pickle", "rb")
     random_forest_model = pickle.load(pickle_in) #load the random_forest model
     app.run(host= "0.0.0.0")
+
+# if __name__ == "__main__":
+#     global k_nearest_model
+#     pickle_in = open("final_knn_model.pickle", "rb")
+#     k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
+#     app.run(host= "0.0.0.0")
+
+# if __name__ == "__main__":
+#     app.run(host= "0.0.0.0")
 
 
