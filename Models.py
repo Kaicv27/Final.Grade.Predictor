@@ -26,13 +26,14 @@ def linear_regression_predict_score(methods = ['GET']):
 
 @app.route('/k_nearest/predict_score')
 def k_nearest_predict_score(methods = ['GET']):
-    student_attributes = []
-    for input_name in request.args:
-        student_attributes.append(request.args.get(input_name))
-    for i in range(len(student_attributes)):
-        student_attributes[i] = float(student_attributes[i])
-    k_nearest_prediction = k_nearest_model.predict(np.array([student_attributes]))
-    return render_template('index.html', prediction=k_nearest_prediction)
+    student_attributes = pd.DataFrame([float(request.args.get(input_name)) for input_name in request.args])
+    # for input_name in request.args:
+    #     student_attributes.append(request.args.get(input_name))
+    # for i in range(len(student_attributes)):
+    #     student_attributes[i] = float(student_attributes[i])
+    student = pd.DataFrame(student_attributes)
+    # k_nearest_model.predict(X=student)
+    return render_template('index.html', prediction=k_nearest_model.predict(X=student))
 
 @app.route('/random_forest/predict_score')
 def random_forest_predict_score(methods = ['GET']):
@@ -41,7 +42,7 @@ def random_forest_predict_score(methods = ['GET']):
         student_attributes.append(request.args.get(input_name))
     for i in range(len(student_attributes)):
         student_attributes[i] = float(student_attributes[i])
-    random_forest_prediction = random_forest_model.predict(np.array([student_attributes]))
+    random_forest_prediction = random_forest_model.predict(pd.DataFrame([student_attributes]))
     return render_template('index.html', prediction=random_forest_prediction)
 
 
