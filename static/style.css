@@ -14,7 +14,7 @@ body {
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 50%;
     border: none;
     text-align: center;
     outline: none;
@@ -35,22 +35,27 @@ body {
     background-color: #f1f1f1;
   }
   
+  #ml-logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   #ml-logo {
     margin-top: 5vh;
-    margin-bottom: 5vh;
-    object-position:
-  }
-  
-  #Purpose {
     margin-bottom: 5vh;
   }
   
   #Background {
-    margin-bottom: 5vh;
+    margin-top: 5vh;
   }
   
   #Implementation {
-    margin-bottom: 5vh;
+    margin-top: 5vh;
+  }
+
+  #Conclusion {
+    margin-top: 5vh;
   }
   
 form {
@@ -80,5 +85,5 @@ form {
 
 .RF_Dropdown{
   font-size:20px
-
+  
 }

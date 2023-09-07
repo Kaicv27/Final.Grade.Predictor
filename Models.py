@@ -22,18 +22,20 @@ def linear_regression_predict_score(methods = ['GET']):
     for i in range(len(student_attributes)):
         student_attributes[i] = float(student_attributes[i])
     linear_regression_prediction = linear_regression_model.predict(np.array([student_attributes]))
-    return render_template('index.html', prediction=linear_regression_prediction)
+    return render_template('index.html', prediction1=linear_regression_prediction)
 
 # knn form pathway
 @app.route('/k_nearest/predict_score')
 def k_nearest_predict_score(methods = ['GET']):
+    student_attributes = []
     for input_name in request.args:
         student_attributes.append(request.args.get(input_name))
     for i in range(len(student_attributes)):
         student_attributes[i] = float(student_attributes[i])
-    df = pd.DataFrame(np.array([student_attributes]), columns = ["age", "Medu", "Fedu", "traveltime", "studytime", "failures", "famrel", "freetime", "goout", "Dalc", "Walc", "health", "absences","G1", "G2", "G3"])
-    k_nearest_prediction = k_nearest_model.predict(df)
-    return render_template('index.html', prediction=k_nearest_prediction)
+    # df = pd.DataFrame(np.array([student_attributes]), columns = ["age", "Medu", "Fedu", "traveltime", "studytime", "failures", "famrel", "freetime", "goout", "Dalc", "Walc", "health", "absences","G1", "G2", "G3"])
+    # k_nearest_prediction = k_nearest_model.predict(df)
+    k_nearest_prediction = k_nearest_model.predict(np.array([student_attributes]))
+    return render_template('index.html', prediction2=k_nearest_prediction)
 
     '''student_attributes = pd.DataFrame([float(request.args.get(input_name)) for input_name in request.args])
     # for input_name in request.args:
@@ -53,7 +55,7 @@ def random_forest_predict_score(methods = ['GET']):
     for i in range(len(student_attributes)):
         student_attributes[i] = float(student_attributes[i])
     random_forest_prediction = random_forest_model.predict(np.array([student_attributes]))
-    return render_template('index.html', prediction=random_forest_prediction)
+    return render_template('index.html', prediction3=random_forest_prediction)
 
 
 if __name__ == "__main__":
@@ -62,8 +64,6 @@ if __name__ == "__main__":
     linear_regression_model = pickle.load(pickle_in) #load the linear_regression model
 
     global k_nearest_model
-    pickle_in = open("final_knn_model.pickle", "rb")
-    # k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
     k_nearest_model = joblib.load("final_knn_model.pkl")
 
     global random_forest_model
