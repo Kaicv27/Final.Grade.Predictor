@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import sklearn
 from sklearn import linear_model
-import pickle
+import pickle, joblib
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-
+# linear regression form pathway
 @app.route('/linear_regression/predict_score')
 def linear_regression_predict_score(methods = ['GET']):
     student_attributes = []
@@ -24,17 +24,27 @@ def linear_regression_predict_score(methods = ['GET']):
     linear_regression_prediction = linear_regression_model.predict(np.array([student_attributes]))
     return render_template('index.html', prediction=linear_regression_prediction)
 
+# knn form pathway
 @app.route('/k_nearest/predict_score')
 def k_nearest_predict_score(methods = ['GET']):
-    student_attributes = pd.DataFrame([float(request.args.get(input_name)) for input_name in request.args])
+    for input_name in request.args:
+        student_attributes.append(request.args.get(input_name))
+    for i in range(len(student_attributes)):
+        student_attributes[i] = float(student_attributes[i])
+    df = pd.DataFrame(np.array([student_attributes]), columns = ["age", "Medu", "Fedu", "traveltime", "studytime", "failures", "famrel", "freetime", "goout", "Dalc", "Walc", "health", "absences","G1", "G2", "G3"])
+    k_nearest_prediction = k_nearest_model.predict(df)
+    return render_template('index.html', prediction=k_nearest_prediction)
+
+    '''student_attributes = pd.DataFrame([float(request.args.get(input_name)) for input_name in request.args])
     # for input_name in request.args:
     #     student_attributes.append(request.args.get(input_name))
     # for i in range(len(student_attributes)):
     #     student_attributes[i] = float(student_attributes[i])
     student = pd.DataFrame(student_attributes)
     # k_nearest_model.predict(X=student)
-    return render_template('index.html', prediction=k_nearest_model.predict(X=student))
+    return render_template('index.html', prediction=k_nearest_model.predict(X=student))'''
 
+# random forest form pathway
 @app.route('/random_forest/predict_score')
 def random_forest_predict_score(methods = ['GET']):
     student_attributes = []
@@ -42,7 +52,7 @@ def random_forest_predict_score(methods = ['GET']):
         student_attributes.append(request.args.get(input_name))
     for i in range(len(student_attributes)):
         student_attributes[i] = float(student_attributes[i])
-    random_forest_prediction = random_forest_model.predict(pd.DataFrame([student_attributes]))
+    random_forest_prediction = random_forest_model.predict(np.array([student_attributes]))
     return render_template('index.html', prediction=random_forest_prediction)
 
 
@@ -50,21 +60,15 @@ if __name__ == "__main__":
     global linear_regression_model
     pickle_in = open("final_linear_regression_model.pickle", "rb")
     linear_regression_model = pickle.load(pickle_in) #load the linear_regression model
+
     global k_nearest_model
     pickle_in = open("final_knn_model.pickle", "rb")
-    k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
+    # k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
+    k_nearest_model = joblib.load("final_knn_model.pkl")
+
     global random_forest_model
     pickle_in = open("final_rf_model.pickle", "rb")
     random_forest_model = pickle.load(pickle_in) #load the random_forest model
     app.run(host= "0.0.0.0")
-
-# if __name__ == "__main__":
-#     global k_nearest_model
-#     pickle_in = open("final_knn_model.pickle", "rb")
-#     k_nearest_model = pickle.load(pickle_in) #load the k_nearest model
-#     app.run(host= "0.0.0.0")
-
-# if __name__ == "__main__":
-#     app.run(host= "0.0.0.0")
 
 
