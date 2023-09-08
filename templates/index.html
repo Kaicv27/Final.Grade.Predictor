@@ -27,15 +27,18 @@
 
     <button id = "Implementation" type="button" class="collapsible">Implementation</button>
 <div class="content">
-  <p>(Text)</p>
+  <p>To be able to predict a user's final grade, we first needed to import a dataset that was sourced from two secondary education Portuguese schools under the UC Irvine Machine Learning Repository. For each algorithm, we began by reading in our file and then specifying what attributes we wanted to train our model on to create our data frame. After specifying which attribute was to be predicated as well, we then split these into two separate arrays for the attributes and predicted value respectively; these two arrays were then split into four arrays which are two training arrays and two testing arrays. 10% of the dataset was left out of the training set and used to test on. Since we know what the true value of that 10% is, we can compare the predictions to this data and assess the accuracy. From there, we could then make use of auxiliary python function libraries like scikit-learn  with the algorithms built into them and create our model for each respective algorithm. After creating our models, the training data arrays are then fit into these models. Once the data had been fit into the models, we could then use score functions to assess the accuracy by passing our testing arrays into these functions. To get a cohesive view of how our models performed in the tests, we used data visualization libraries to display the result as seen in the hyperlinks in the dropdowns below. 
+  </p>
 </div>
 
     <button id = "Conclusion" type="button" class="collapsible">Conclusion</button>
 <div class="content">
-  <p>(Text)</p>
+  <p>Based on our analysis of the models' performance, as seen in notebooks accessible through the provided hyperlinks, the random forest algorithm performed the best in terms of prediction accuracy. Random Forest outperformed Linear Regression due to the fact that Linear Regression assumes their to be a linear relationship between the data points, so when there are data points that are outliers compared to other data points that display a strong correlation, this model cannot accurately establish the relationship between all data points. Similar to the faults of Linear Regression, k-Nearest Neighbors also produces accuracy issues when implemented with large data sets and large variation between the data since relationships are established based on the distance between data points. Random Forest proves to be a more accurate model because while single decision trees can be prone to bias and overfitting, a “forest” of decision trees can increase the accuracy as the randomness involved in the development of each tree allows for more diversity among the different predictions of each tree, allowing the final prediction of the “forest” to be more accurate compared to that of a single decision tree. 
+
+  </p>
 </div>
     
-<p id = app_title>Final Grade Prediction App</p>
+<p id = app_title>Final Grade Prediction App (Pick Model to Run App On)</p>
 
 <button id = "LR_Dropdown" type="button" class="collapsible">Linear Regression</button>
 <div class="content">
@@ -89,6 +92,9 @@
  
  <p id = "prediction_text">Grade Prediction: {{ prediction1 }}</p>
 </p>
+
+<a id = "LR_Link" href="https://colab.research.google.com/drive/12LII5G-zrm8y5BZQ3QP9oenG0Y5XyvR-?usp=sharing">Linear Regression Model</a>
+
 </div>
 
 <button id = "kNN_Dropdown" type="button" class="collapsible">k-Nearest Neighbors</button>
@@ -146,6 +152,9 @@
  
  <p id = "prediction_text">Grade Prediction: {{ prediction2 }}</p>
 </p>
+
+<a id = "knn_Link" href="https://colab.research.google.com/drive/1XE9O1Wch5UrAwCTKGBhzLeyJlwSJ7a-y?usp=sharing">k-Nearest Neighbors Model and Accuracy Plot</a>
+
 </div>
 
 <button id = "RF_Dropdown" type="button" class="collapsible">Random Forest</button>
@@ -200,6 +209,9 @@
  
  <p id = "prediction_text">Grade Prediction: {{ prediction3 }}</p>
 </p>
+
+<a id = "RF_Link" href="https://colab.research.google.com/drive/1l6EAm9RBVrayrLg6Y-VsKRTBWdMOxx8A?usp=sharing">Random Forest Model and Accuracy Plot</a>
+
 </div>
          <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
