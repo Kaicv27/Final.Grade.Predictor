@@ -24,17 +24,15 @@ def linear_regression_predict_score(methods = ['GET']):
     linear_regression_prediction = linear_regression_model.predict(np.array([student_attributes]))
     return render_template('index.html', prediction1=linear_regression_prediction)
 
+/Bugged func
 # knn form pathway
 @app.route('/k_nearest/predict_score')
 def k_nearest_predict_score(methods = ['GET']):
     student_attributes = []
     for input_name in request.args:
-        student_attributes.append(request.args.get(input_name))
-    for i in range(len(student_attributes)):
-        student_attributes[i] = float(student_attributes[i])
     # df = pd.DataFrame(np.array([student_attributes]), columns = ["age", "Medu", "Fedu", "traveltime", "studytime", "failures", "famrel", "freetime", "goout", "Dalc", "Walc", "health", "absences","G1", "G2", "G3"])
     # k_nearest_prediction = k_nearest_model.predict(df)
-    k_nearest_prediction = k_nearest_model.predict(np.array([student_attributes]))
+        k_nearest_prediction = k_nearest_model.predict(np.array([student_attributes]))
     return render_template('index.html', prediction2=k_nearest_prediction)
 
  
